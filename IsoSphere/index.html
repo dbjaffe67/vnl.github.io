@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Passive Sphere Voltage Response</title>
+<link rel="stylesheet" href="css/vnlstyle.css">
+<script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/rgbcolor.js"></script> 
+<script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/canvg.js"></script>
+<script type="text/javascript" src="scripts/grChartImg.js"></script>    
+
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="scripts/main.js" type="application/javascript"></script>
+<script type="text/javascript" src="scripts/noise.js" type="application/javascript"></script>
+<script type="text/javascript" src="scripts/sphere.js" type="application/javascript"></script>
+<script type="text/javascript" src="scripts/IstepTool.js" type="application/javascript"></script>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+      google.load('visualization', '1', {packages: ['corechart']});
+      google.setOnLoadCallback(runModel);
+</script>
+<script src="scripts/fft.js" type="application/javascript"></script>
+<script src="scripts/main.js" type="application/javascript"></script>
+</head>
+<body>
+
+
+
+
+<div id="container">
+
+<H1>Passive Spherical Neuron</H1>
+
+<div id="menu">  		<!-- the block of user controls -->
+
+Banner ID<input type="text" id="seedID" onchange="setSeed(this.value)" placeholder="XXXX" autofocus="">
+<br/>
+
+<hr>
+
+<table class="vertical-group">		<!-- Choose between two different neurons -->
+<tr>
+  <td>
+    <label style="cursor: pointer">
+    	<input type="radio" onchange="choosemodel(0)" checked name="rg"/><i></i>
+    	Neuron #1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	</label>
+    <label style="cursor: pointer">
+    	<input type="radio" onchange="choosemodel(1)" name="rg" /><i></i>
+   		Neuron #2&nbsp;
+	</label>
+   </tr>
+</table>
+
+
+<hr>
+
+<!-- Is this going to be an experimental situation? -->
+<input type="checkbox" id="expflag" value="off"/>Experimental
+
+<hr>
+
+
+<p>
+
+Protocol &nbsp;		<!-- Pull down menus for IStep controls. Single step is default -->
+
+<select id="ChooseProtocol" onchange="setIstep()">
+  <option value="0" onclick="setIstep()">Constant</option>
+  <option selected="selected" value="1" onclick="setIstep()">Single step</option>
+  <option value="2" onclick="setIstep()">Double step</option>
+</select>
+
+<hr>
+
+
+<div id="protocols">		<!-- IStep controls -->
+		
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I<sub>h</sub>
+
+<input id="ihslide" class="rangeH" min="-120" max="120" step="5" value="0" onchange="setIh(this.value)" autofocus="" type="range">
+
+<input id="ihValue" type='text' value="0" class='inform'> pA
+
+<br>
+
+
+I<sub>h</sub> Duration 
+<input id="ihdurslide" class="rangeH" min="10" max="100" step="5" value="0" onchange="sethDur(this.value)" autofocus="" type="range">
+<input id="durh" type='text' value="20" class='inform'>ms
+
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I<sub>c</sub> 
+<input  id="icslide" class="rangeH" min="-120" max="100" step="5" value="20" onchange="setIc(this.value)" autofocus="" type="range" >
+
+<input id="icValue" onchange="setIc(this.value)" value="20" class='inform'> pA
+
+<br>
+
+
+I<sub>c</sub> Duration 
+<input id="icdurslide" class="rangeH" min="10" max="100" step="5" value="20" onchange="setcDur(this.value)" autofocus="" type="range">
+<input id="durc" type='text' value="20" class='inform'>ms
+
+</div>
+
+<div id="protocolImage">		<!-- Display cartoon of IStep function -->
+<img src="images/p1.png">
+</div>
+
+
+<hr>					
+								<!-- Run the simulation -->
+<button type="button" id ="button" onclick="runModel()" name="Run">Run</button> 
+
+<hr>
+
+
+<div id="traceFunctions">		<!-- Save or hold traces -->
+
+<button type="button" onclick="showPNG()" id="savebutton">Display static image</button>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" onclick="setStorage()" id="storage" value="off">Hold Trace
+
+<br>
+<button id="launchGr" onclick="launchGrapher()">
+     Simple Graph</button>
+
+</div>
+
+
+</div>			<!-- end of menu -->
+<p>
+
+
+
+<div id="scope" style="width: 600px; height: 600px;"> </div>  		<!-- Scope from Google Visualization API -->
+
+
+</div>
+
+
+<div id="lower">
+<br>
+<hr style="background:#F87431; border:0; height:7px" />
+Virtual Neurobiology Laboratory<br/>David B. Jaffe, Ph.D.<br/>University of Texas at San Antonio
+</div>
+
+<script>
+setIstep(1);
+runModel();
+setIc(100);
+
+</script>
+
+</body>
+</html>
