@@ -1,0 +1,119 @@
+
+body {
+	background-color: #62C9F5;
+
+	font-family: 'Lato', sans-serif;
+}
+
+H1{
+	margin-left: 20px;
+}
+
+
+#lower {
+	clear: left;
+	width: 800px;
+	margin: 20px;
+}
+
+#button {
+	height: 30px;
+	font-size: 100%;
+	display: block;  
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#savebutton {
+	font-size: 100%
+}
+
+#launchGr {
+	margin-top: 20px;
+
+	font-size: 100%
+}
+
+input[type="radio"] {
+    display:none;
+}
+input[type="radio"] + i:before {
+    content:'\2718';
+    color:red;
+}
+input[type="radio"]:checked + i:before {
+    content:'\2713';
+    color:green;
+}
+
+/* only to get the list vertical */
+.vertical-group > label {
+    display:block
+}
+
+#protocolImage img{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#scope{
+	margin-left: 400px;
+	border: 2px solid black;
+	width: 600px;
+	height: 600px;
+	top: 20px;
+	padding: 0px;
+	box-shadow:         7px 7px 10px 0px rgba(50, 50, 50, 0.75);
+}
+
+#seedID {
+	width: 32px;
+	margin: 10px; 
+	padding: 0;
+	
+	}
+
+.inform {width: 33px; margin: 10px; padding: 0;}
+
+#menu{
+	float: left;
+	margin-left: 20px;
+	height: 650px;
+	border: 2px solid #E1E0E1;
+	background-color: #E1E0E1;
+	width: 300px;
+	padding: 10px;	
+}
+
+#storage{
+
+}
+
+#vsteps{
+	top: 50px;
+}
+
+#protocols{
+	float: left;
+}
+
+
+
+.rangeH {width: 100px; height: 10px; margin: 10px; padding: 0;}
+
+
+#pickProtocol {
+ -webkit-appearance: none;  /*REMOVES DEFAULT CHROME & SAFARI STYLE*/
+ -moz-appearance: none;  /*REMOVES DEFAULT FIREFOX STYLE*/
+ border: 0 !important;  /*REMOVES BORDER*/
+
+ background-color: #AFAEAF;
+ color: #fff;
+ -webkit-border-radius: 5px;
+ border-radius: 5px;
+ font-size: 14px;
+ padding: 10px;
+ width: 35%;
+ cursor: pointer;
+}
