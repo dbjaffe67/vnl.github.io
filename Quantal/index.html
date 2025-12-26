@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Quantal Analysis</title>
+<link rel="stylesheet" href="css/radio.css">
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+
+ <!-- D3.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <!-- Plotly.js -->
+  <script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script>
+  
+
+
+<script type="text/javascript" src="scripts/main.js" type="application/javascript"></script>
+<script type="text/javascript" src="scripts/noise.js" type="application/javascript"></script>
+<script type="text/javascript" src="scripts/PSP.js" type="application/javascript"></script>
+<script type="text/javascript" src="scripts/IstepTool.js" type="application/javascript"></script>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+      google.load('visualization', '1', {packages: ['corechart']});
+      google.setOnLoadCallback(runSet);
+</script>
+<script src="scripts/fft.js" type="application/javascript"></script>
+<script src="scripts/main.js" type="application/javascript"></script>
+
+
+
+
+</head>
+<body>
+
+
+
+<H1>Quantal Analysis: Poisson conditions</H1>
+
+
+
+<section>
+
+
+<div id="topgroup">
+
+Last four digits of your ID<input type="text" id="seedID" onchange="setSeed(this.value)" placeholder="XXXX" autofocus="">
+<hr>
+<p>
+<button style="display: block; margin: 0 auto;" type="button" id ="button" onclick="runSet()">Run</button> 
+<p>
+<hr>
+<input type="checkbox" id="expflag" value="off"/>Experimental 
+<hr>
+ <p id="n"><p id="mean"><p id="s2">
+</div>
+
+
+ <div id="scope"></div>  
+</section>
+
+<p>
+</br>
+<div id="lower">
+<hr style="background:#F87431; border:0; height:7px" />
+
+Virtual Neurobiology Laboratory<br/>David B. Jaffe, Ph.D.<br/>University of Texas at San Antonio
+</div>
+</body>
+</html>

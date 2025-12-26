@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	
+<title>Google Developers</title>
+      <script type="text/javascript" src="https://www.google.com/jsapi"></script> 
+  
+   
+	
+</head>
+<body class="devsite-layout-docs devsite-framebox">
+
+<div id="chart_div" style="width: 900px; height: 500px;"></div>
+ 
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['corechart']}]}"></script>
+
+
+      <script type="text/javascript">
+
+      google.setOnLoadCallback(drawChart);
+      
+      function drawChart() {
+		
+		
+		var data = new google.visualization.DataTable();
+	
+		data.addColumn('string','Name');
+		data.addColumn('number','Number');
+		var x = [];
+		for (var i = 0; i < 5000; i ++) {
+			x[i] = Math.random();
+			data.addRow([i.toString(),Math.random()]);
+		}
+		
+	var options = {
+          title: 'Test',
+          colors: ['green'],
+          legend: { position: 'none' }
+          
+        };	
+		
+	var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
+    chart.draw(data, options);
+   }
+   
+   </script>
+ 
+
+</body>
+</html>
