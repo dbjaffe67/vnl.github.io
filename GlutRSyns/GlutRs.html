@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Glutamatergic Synapse </title>
+<link rel="stylesheet" href="css/radio.css">
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="scripts/main.js" type="application/javascript"></script>
+<script type="text/javascript" src="scripts/noise.js" type="application/javascript"></script>
+<script type="text/javascript" src="scripts/VstepTool.js" type="application/javascript"></script>
+<script type="text/javascript" src="scripts/PSPwithNMDA.js" type="application/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+      google.load('visualization', '1', {packages: ['corechart']});
+      google.setOnLoadCallback(runModel);
+</script>
+<script src="fft.js" type="application/javascript"></script>
+<script src="scripts/main.js" type="application/javascript"></script>
+</head>
+<body>
+
+
+<center>
+<H1>Glutamatergic Synapse </H1>
+
+<div id="topgroup">
+Last four digits of your ID<input type="text" id="seedID" onchange="setSeed(this.value)" placeholder="XXXX" autofocus="">
+
+</br>
+
+
+<select id="clamptype">
+  <option value=1>Voltage Clamp</option>
+  <option value=0>Current Clamp</option>
+</select>
+
+
+<button type="button" onclick="runModel()">Run</button> <p>
+
+<input type="checkbox" id="apvflag" value="off"/>50 &mu;M APV &nbsp; &nbsp;
+<input type="checkbox" id="cnqxflag" value="off"/>50 &mu;M CNQX
+</br>
+<input type="checkbox" id="expflag" value="off"/>Experimental 
+
+</div>
+<p>
+
+
+<p>
+ <div id="scope"></div>  
+ &nbsp;<p>
+ <p>
+
+  <input type="checkbox" onclick="setStorage()" id="storage" value="off">Hold &nbsp;  &nbsp;   &nbsp; 
+  <button type="button" onclick="saveTrace()" id="savebutton">Save trace to file</button>
+
+ &nbsp;
+ 
+&nbsp;
+<div id="vsteps">
+
+
+<span style="display:none;">
+<input type="radio" id="id0">
+</span>
+<img onclick="setVstep(0)" style="border-radius: 18px;box-shadow:         7px 7px 10px 0px rgba(50, 50, 50, 0.75);" name="vstepa" src="images/VstepTool0.jpg" width="110" height="110" border="0" alt="Simple step">
+<span style="display:none;">
+<input type="radio" id="id1">
+</span>
+<img   onclick="setVstep(1)" style="border-radius: 18px;box-shadow:         7px 7px 10px 0px rgba(50, 50, 50, 0.75);" name="vstepb" src="images/VstepTool1off.jpg" width="110" height="110" border="0" alt="One step">
+<span style="display:none;">
+<input type="radio" ">
+</span>
+<img  onclick="setVstep(2)" style="border-radius: 18px;box-shadow:         7px 7px 10px 0px rgba(50, 50, 50, 0.75);" name="vstepc" src="images/VstepTool2off.jpg" width="110" height="110" border="0" alt="dfdsfs step">
+
+</div>
+
+<p>
+
+<div id='protocols'>
+V<sub>h</sub> 
+<input class="rangeH" min="-120" max="100" step="5" value="-80" 
+onchange="setVh(this.value)" autofocus="" type="range">
+<input id="vhValue" type='text' value="-80" class='inform'> mV &nbsp; &nbsp; &nbsp; 
+Duration 
+<input class="rangeH" min="10" max="100" step="5" value="20" 
+onchange="sethDur(this.value)" autofocus="" type="range">
+<input id="durh" type='text' value="20" class='inform'>ms
+</div>
+
+<p>
+<p>
+<hr style="background:#F87431; border:0; height:7px" />
+
+Neurophysiology<br/>BIO 5433<br/>University of Texas at San Antonio
+
+ 
+</center>
+
+
+<script>
+setVstep(0);
+
+</script>
+
+</body>
+</html>

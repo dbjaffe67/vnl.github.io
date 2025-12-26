@@ -1,0 +1,59 @@
+
+body {
+	background-color: #E6E6B8;
+
+	font-family: 'Lato', sans-serif;
+}
+
+
+input[type="radio"] {
+    display:none;
+}
+input[type="radio"] + i:before {
+    content:'\2718';
+    color:red;
+}
+input[type="radio"]:checked + i:before {
+    content:'\2713';
+    color:green;
+}
+
+/* only to get the list vertical */
+.vertical-group > label {
+    display:block
+}
+
+
+#scope{
+	border: 2px solid black;
+	width: 600px;
+	height: 300px;
+	left: 0px;
+	top: 20px;
+	padding: 0px;
+	margin: 0px;
+	box-shadow:         7px 7px 10px 0px rgba(50, 50, 50, 0.75);
+}
+
+#seedID {width: 32px; margin: 10px; padding: 0;}
+
+.inform {width: 33px; margin: 10px; padding: 0;}
+
+#topgroup{
+	border-radius: 21px; 
+	border: 2px solid #FFFFFF;
+	background-color: #FFFFFF;
+	width: 300px;
+	box-shadow:         7px 7px 10px 0px rgba(50, 50, 50, 0.75);
+	
+}
+
+#vsteps{
+	top: 20px;
+}
+
+#protocols{
+	top: 50px;
+}
+
+.rangeH {width: 100px; height: 10px; margin: 10px; padding: 0;}

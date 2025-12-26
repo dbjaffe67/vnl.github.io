@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Virtual Ion Channel Laboratory </title>
+<link rel="stylesheet" href="css/vnlstyle.css">
+<script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/rgbcolor.js"></script> 
+<script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/canvg.js"></script>
+<script type="text/javascript" src="scripts/grChartImg.js"></script>    
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="scripts/main.js" type="application/javascript"></script>
+<script type="text/javascript" src="scripts/noise.js" type="application/javascript"></script>
+<script type="text/javascript" src="scripts/leak.js" type="application/javascript"></script>
+<script type="text/javascript" src="scripts/VstepTool.js" type="application/javascript"></script>
+<script type="text/javascript" src="scripts/ih.js" type="application/javascript"></script>
+<script type="text/javascript" src="scripts/khh.js" type="application/javascript"></script>
+
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+      google.load('visualization', '1', {packages: ['corechart']});
+      google.setOnLoadCallback(drawVis);
+</script>
+<script src="scripts/fft.js" type="application/javascript"></script>
+<script src="scripts/main.js" type="application/javascript"></script>
+</head>
+<body>
+
+<div id="container">
+
+<H1>Hyperpolarization-activated Currents</H1>
+
+<div id="menu">  		<!-- the block of user controls -->
+
+Student ID<input type="text" id="seedID" onchange="setSeed(this.value)" placeholder="XXXX" autofocus="">
+
+<hr>
+
+<table class="vertical-group">
+<tr>
+  <td>
+    <label style="cursor: pointer">
+    <input type="radio" onchange="choosemodel(0)" checked name="rg"/><i></i>
+    Leak&nbsp;
+</label>
+        <label style="cursor: pointer">
+    <input type="radio" onchange="choosemodel(1)" name="rg" /><i></i>
+   I<sub>h</sub>&nbsp;
+</label>
+
+   
+    
+    </tr>
+</table>
+
+<hr>
+
+
+<input type="checkbox" id="expflag" value="off"/>Experimental
+
+<hr>
+<p>
+
+Protocol &nbsp;		<!-- Pull down menus for IStep controls. Single step is default -->
+
+<select id="ChooseProtocol" onchange="setVstep()">
+  <option value="0" onclick="setVstep()">Constant</option>
+  <option selected="selected" value="1" onclick="setVstep()">Single step</option>
+  <option value="2" onclick="setVstep()">Double step</option>
+</select>
+
+<hr>
+
+
+<div id="protocols">		<!-- VStep controls -->
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V<sub>h</sub>
+
+<input id="vhslide" class="rangeH" min="-80" max="50" step="1" value="-40" onchange="setVh(this.value)" autofocus="" type="range">
+
+<input id="vhValue" type='text' onchange="setVh(this.value)" min="-80" max="50"  value="-40.0" class='inform'> mV
+
+<br>
+
+
+V<sub>h</sub> Duration 
+<input id="vhdurslide" class="rangeH" min="0" max="1000" step="5" value="20" onchange="sethDur(this.value)" autofocus="" type="range">
+<input id="durh" type='text' value="20" onchange="sethDur(this.value)" class='inform'>ms
+
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V<sub>c</sub> 
+<input  id="vcslide" class="rangeH" min="-120" max="50" step="1" value="-90" onchange="setVc(this.value)" autofocus="" type="range" >
+
+<input id="vcValue" onchange="setVc(this.value)" value="-90" class='inform'> mV
+
+<br>
+
+
+V<sub>c</sub> Duration 
+<input id="vcdurslide" class="rangeH" min="0" max="1000" step="5" value="500" onchange="setcDur(this.value)" autofocus="" type="range">
+<input id="durc" type='text' onchange="setcDur(this.value)" value="500" class='inform'>ms
+
+
+</div>				<!-- end of protocols --> 
+
+
+<div id="protocolImage">		<!-- Display cartoon of IStep function -->
+<img src="images/p1.png">
+</div>
+
+<hr>
+
+<button type="button" id="button" onclick="runModel()">Run</button> <p>
+
+<hr>
+
+<div id="traceFunctions">		<!-- Save or hold traces -->
+
+<button type="button" onclick="showPNG()" id="savebutton">Display static image</button>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" onclick="setStorage()" id="storage" value="off">Hold Trace
+
+<br>
+<button id="launchGr" onclick="launchGrapher()"> 
+
+     Simple Graph</button>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" onclick="setAvg()" id="avgtraces" value="off">Average Traces
+</div>			<!-- Save or hold traces -->
+
+
+
+
+</div>				<!-- end of menu --> 
+
+
+ <div id="scope"  style="width: 600px; height: 600px;"></div>  
+
+
+</div>  <!-- end of container --> 
+ 
+
+
+
+<div id="lower">
+<br>
+<hr style="background:#F87431; border:0; height:7px" />
+Virtual Neurobiology Laboratory<br/>David B. Jaffe, Ph.D.<br/>University of Texas at San Antonio
+</div>
+
+
+<script>
+setVstep(1);
+setVc(0);
+runModel();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Synapse Reversal Potential</title>
+<link rel="stylesheet" href="css/vnlstyle.css">
+<script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/rgbcolor.js"></script> 
+<script type="text/javascript" src="http://canvg.googlecode.com/svn/trunk/canvg.js"></script>
+<script type="text/javascript" src="scripts/grChartImg.js"></script>    
+<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+<script type="text/javascript" src="scripts/main.js" type="application/javascript"></script>
+<script type="text/javascript" src="scripts/noise.js" type="application/javascript"></script>
+<script type="text/javascript" src="scripts/PSP.js" type="application/javascript"></script>
+<script type="text/javascript" src="scripts/IstepTool.js" type="application/javascript"></script>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+      google.load('visualization', '1', {packages: ['corechart']});
+      google.setOnLoadCallback(runModel);
+</script>
+<script src="scripts/fft.js" type="application/javascript"></script>
+<script src="scripts/main.js" type="application/javascript"></script>
+</head>
+<body>
+
+<div id="container">
+
+<H1>Reversal Potential of a Synaptic Response</H1>
+
+<div id="menu">
+<center>
+Student ID<input type="text" id="seedID" onchange="setSeed(this.value)" placeholder="XXXX" autofocus="">
+
+<hr>
+
+<table class="vertical-group">
+<tr>
+  <td>
+    <label style="cursor: pointer">
+    <input type="radio" onchange="choosemodel(0)" checked name="rg"/><i></i>
+    AMPA&nbsp;&nbsp;&nbsp;&nbsp;
+</label>
+        <label style="cursor: pointer">
+    <input type="radio" onchange="choosemodel(1)" name="rg" /><i></i>
+   GABA<sub>A</sub>&nbsp;&nbsp;&nbsp;&nbsp;
+</label>
+    <label style="cursor: pointer">
+      <input type="radio" onchange="choosemodel(2)" name="rg" /><i></i>
+   GABA<sub>B</sub> &nbsp;   
+</label>
+      
+    </tr>
+</table>
+
+<hr>
+
+<input type="checkbox" id="expflag" value="off"/>Experimental
+
+<hr>
+<p>
+
+Protocol &nbsp;		<!-- Pull down menus for IStep controls. Single step is default -->
+
+<select id="ChooseProtocol" onchange="setIstep()">
+  <option selected="selected" value="0" onclick="setIstep()">Constant</option>
+  <option value="1" onclick="setIstep()">Single step</option>
+  <option value="2" onclick="setIstep()">Double step</option>
+</select>
+
+
+<hr>
+
+
+<div id="protocols">		<!-- IStep controls -->
+		
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I<sub>h</sub>
+
+<input id="ihslide" class="rangeH" min="-2.0" max="2.0" step="0.1" value="0" onchange="setIh(this.value)" autofocus="" type="range">
+
+<input id="ihValue" type='text' onchange="setIh(this.value)" min="-10" max="50"  value="0.0" class='inform'> nA
+
+<br>
+
+
+I<sub>h</sub> Duration 
+<input id="ihdurslide" class="rangeH" min="0" max="1000" step="5" value="40" onchange="sethDur(this.value)" autofocus="" type="range">
+<input id="durh" type='text' value="40" onchange="sethDur(this.value)" class='inform'>ms
+
+<br>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I<sub>c</sub> 
+<input  id="icslide" class="rangeH" min="-10" max="50" step="0.1" value="1" onchange="setIc(this.value)" autofocus="" type="range" >
+
+<input id="icValue" onchange="setIc(this.value)" value="0" class='inform'> nA
+
+<br>
+
+
+I<sub>c</sub> Duration 
+<input id="icdurslide" class="rangeH" min="0" max="100" step="5" value="20" onchange="setcDur(this.value)" autofocus="" type="range">
+<input id="durc" type='text' onchange="setcDur(this.value)" value="20" class='inform'>ms
+
+
+T<sub>d</sub> Duration 
+<input id="Tdurslide" class="rangeH" min="0" max="1000" step="5" value="20" onchange="setTdur(this.value)" autofocus="" type="range">
+<input id="durT" type='text' onchange="setTdur(this.value)" value="20" class='inform'>ms
+
+</div>
+
+<div id="protocolImage">		<!-- Display cartoon of IStep function -->
+<img src="images/p1.png">
+</div>
+
+<hr>
+
+<button type="button" id="button" onclick="runModel()">Run</button> <p>
+
+<hr>
+
+<div id="traceFunctions">		<!-- Save or hold traces -->
+
+<button type="button" onclick="showPNG()" id="savebutton">Display static image</button>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" onclick="setStorage()" id="storage" value="off">Hold Trace
+
+<br>
+<button id="launchGr" onclick="launchGrapher()"> 
+
+     Simple Graph</button>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<input type="checkbox" onclick="setAvg()" id="avgtraces" value="off">Average Traces
+</div>			<!-- Save or hold traces -->
+
+
+
+
+</div>				<!-- end of menu --> 
+
+
+ <div id="scope"  style="width: 600px; height: 600px;"></div>  
+
+
+</div>  <!-- end of container --> 
+
+<script>
+setIstep(0);
+runModel();
+setIc(0);
+
+</script>
+
+
+</body>
+</html>
